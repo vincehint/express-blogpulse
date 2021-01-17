@@ -58,7 +58,7 @@ router.get('/:id', (req, res) => {
     })
     if (!article) throw Error()
     
-    res.render('articles/show', { article: article, comments: article.comments })
+    res.render('articles/show', { article: article })
   })
   .catch((error) => {
     console.log(error)
