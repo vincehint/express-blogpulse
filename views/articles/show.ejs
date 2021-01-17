@@ -15,5 +15,8 @@
     <input type="submit">
   </form>
 </div>
-
+<% article.comments.forEach(c => { %>
+  <p> <% c.dataValues.content %> </p>
+  <p> <% c.dataValues.commentorName %> </p>
+<% }) %>
 <a href="/">&larr; Back Home</a>

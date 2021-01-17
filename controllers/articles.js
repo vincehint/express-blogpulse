@@ -24,7 +24,7 @@ router.post('/:id/comments', (req, res) => {
     articleId: req.params.id
   }).then (comment => {
     console.log(comment.get())
-    res.redirect(`/article/${req.params.id}`)
+    res.redirect(`/articles/${req.params.id}`)
   }).catch((error) => {
     console.log(error)
     res.status(400).render('main/404')
@@ -49,13 +49,16 @@ router.get('/:id', (req, res) => {
   console.log(req.params)
   db.article.findOne({
     where: { id: req.params.id },
-    include: [db.author]
+    include: [db.author, db.comment]
   })
   .then((article) => {
-    console.log(article)
+    //console.log(article.comments)
+    article.comments.forEach(c => {
+      console.log(c.dataValues.commentorName)
+    })
     if (!article) throw Error()
     
-    res.render('articles/show', { article: article })
+    res.render('articles/show', { article: article, comments: article.comments })
   })
   .catch((error) => {
     console.log(error)
