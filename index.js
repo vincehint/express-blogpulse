@@ -5,7 +5,7 @@ let moment = require('moment')
 let rowdy = require('rowdy-logger')
 let app = express()
 
-rowdy.begin(app)
+//rowdy.begin(app)
 
 app.set('view engine', 'ejs')
 
@@ -30,6 +30,8 @@ app.get('/', (req, res) => {
     res.status(400).render('main/404')
   })
 })
+
+
 
 // bring in authors and articles controllers
 app.use('/authors', require('./controllers/authors'))

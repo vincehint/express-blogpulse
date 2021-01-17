@@ -16,7 +16,21 @@ router.post('/', (req, res) => {
     res.status(400).render('main/404')
   })
 })
-
+router.post('/:id/comments', (req, res) => {
+  db.comment.create({
+    
+    commentorName: req.body.commentorName, 
+    content: req.body.content,
+    articleId: req.params.id
+  }).then (comment => {
+    console.log(comment.get())
+    res.redirect(`/article/${req.params.id}`)
+  }).catch((error) => {
+    console.log(error)
+    res.status(400).render('main/404')
+    
+  })
+})
 // GET /articles/new - display form for creating new articles
 router.get('/new', (req, res) => {
   db.author.findAll()
@@ -28,15 +42,19 @@ router.get('/new', (req, res) => {
   })
 })
 
+
+
 // GET /articles/:id - display a specific post and its author
 router.get('/:id', (req, res) => {
+  console.log(req.params)
   db.article.findOne({
     where: { id: req.params.id },
     include: [db.author]
   })
   .then((article) => {
+    console.log(article)
     if (!article) throw Error()
-    console.log(article.author)
+    
     res.render('articles/show', { article: article })
   })
   .catch((error) => {
@@ -44,5 +62,8 @@ router.get('/:id', (req, res) => {
     res.status(400).render('main/404')
   })
 })
+
+
+
 
 module.exports = router

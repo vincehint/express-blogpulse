@@ -7,5 +7,13 @@
 <p><%= article.content %></p>
 
 <hr />
+<div class="comments">
+  
+  <form action="/articles/<%= article.id %>/comments" method="POST" class="commentsForm">
+    <input name="content" type="text">
+    Name: <input type="text" name="commentorName" id="nameArea">
+    <input type="submit">
+  </form>
+</div>
 
 <a href="/">&larr; Back Home</a>

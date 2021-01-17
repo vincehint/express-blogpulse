@@ -2,3 +2,21 @@
   width: 100%;
   height: auto;
 }
+
+textarea {
+  height: 100px;
+  width: 500px;
+  border-radius: 3px;
+  border: 2px solid rgb(123, 157, 198);
+}
+
+.comments {
+  text-align: center;
+  justify-content: center;
+  
+}
+
+#nameArea {
+  border-radius: 3px;
+  border: 2px solid rgb(123, 157, 198);
+}
